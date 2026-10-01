@@ -161,11 +161,13 @@ async def reset(request: ProfileRequest) -> Dict[str, Any]:
 
 
 @app.get("/healthz")
+@app.head("/healthz")
 async def healthz() -> Dict[str, Any]:
     return {"ok": True, "sessions": STORE.count()}
 
 
 @app.get("/")
+@app.head("/")
 async def index() -> FileResponse:
     return FileResponse(os.path.join(WEB, "index.html"))
 
